@@ -18,7 +18,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("[lead:application]", error);
     return NextResponse.json(
-      { ok: false, error: "Something went wrong. Please try again." },
+      { ok: false, error: `DEBUG: ${error instanceof Error ? error.message : String(error)}` },
       { status: 500 }
     );
   }
