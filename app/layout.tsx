@@ -34,11 +34,16 @@ export const metadata: Metadata = {
     description: BRAND.description,
     siteName: BRAND.fullName,
     type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: BRAND.fullName }],
   },
   twitter: {
     card: "summary_large_image",
     title: `${BRAND.name} — ${BRAND.tagline}`,
     description: BRAND.description,
+    images: ["/og-image.png"],
+  },
+  verification: {
+    google: "1ihudbtLet_FY8EXpRbmwSy-jpbTBPbk6ZAKUm-FQy0",
   },
 };
 
@@ -48,6 +53,8 @@ const organizationJsonLd = {
   name: BRAND.fullName,
   alternateName: BRAND.name,
   description: BRAND.description,
+  logo: `https://${BRAND.domain}/brand/meridian-icon.png`,
+  image: `https://${BRAND.domain}/og-image.png`,
   telephone: CONTACT.phone,
   email: CONTACT.email,
   address: {

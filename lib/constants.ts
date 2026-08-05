@@ -4,7 +4,7 @@ export const BRAND = {
   tagline: "Building Tomorrow's Doctors, One Dream at a Time",
   description:
     "Helping NEET-qualified Indian students secure direct admission to NMC & WHO approved MBBS programmes in Russia and Georgia — no entrance exams, transparent fees, and complete support from registration to FMGE/NEXT.",
-  domain: "meridianabroad.com",
+  domain: "meridianabroad.in",
   founded: 2026,
 } as const;
 
