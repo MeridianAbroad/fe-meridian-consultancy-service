@@ -3,13 +3,12 @@ import { PageHeader } from "@/components/shared/page-header";
 import { StatsBar } from "@/components/sections/home/stats-bar";
 import { OurStory } from "@/components/sections/about/our-story";
 import { MissionValues } from "@/components/sections/about/mission-values";
-import { Team } from "@/components/sections/about/team";
 import { CtaSection } from "@/components/shared/cta-section";
 
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Meet the team behind Meridian Abroad — 1,800+ NEET students placed across 21+ NMC & WHO approved universities in Russia and Georgia since 2011.",
+    "Meridian Abroad has placed 10+ NEET students across 21+ NMC & WHO approved universities in Russia and Georgia since 2026.",
 };
 
 export default function AboutPage() {
@@ -24,7 +23,6 @@ export default function AboutPage() {
       <StatsBar />
       <OurStory />
       <MissionValues />
-      <Team />
       <CtaSection
         title="Want to Talk to a Real Counsellor?"
         description="No scripts, no sales pressure — just an honest assessment of your options."

@@ -453,7 +453,7 @@ export const universities: University[] = [
     ranking: "NMC & WHO Approved · ECFMG Listed",
     type: "Private",
     founded: 1989,
-    studentPopulation: "1,800+",
+    studentPopulation: "10+",
     internationalStudents: "500+ Indian students",
     acceptanceRate: "100% Direct Admission",
     about:
@@ -551,7 +551,7 @@ export const universities: University[] = [
     logoInitial: "A",
     ranking: "NMC & WHO Approved",
     type: "Private",
-    founded: 2011,
+    founded: 2026,
     studentPopulation: "1,200+",
     internationalStudents: "250+ Indian students",
     acceptanceRate: "100% Direct Admission",

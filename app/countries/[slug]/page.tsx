@@ -282,8 +282,6 @@ export default async function CountryDetailPage({
       <CtaSection
         title={`Ready to Start Your Journey to ${country.name}?`}
         description="Book a free consultation and get a personalised shortlist of universities, a fee breakdown and a realistic visa timeline."
-        secondaryHref="/fees"
-        secondaryLabel="Check Fees & Loans"
       />
     </>
   );

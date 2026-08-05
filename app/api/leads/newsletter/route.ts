@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { newsletterSchema } from "@/lib/validations";
-import { notifyLead, saveLead } from "@/lib/leads";
+import { notifyLead, saveNewsletterLead } from "@/lib/leads";
 
 export async function POST(request: Request) {
   const body = await request.json();
@@ -14,7 +14,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    await saveLead("newsletter", parsed.data);
+    await saveNewsletterLead(parsed.data);
   } catch (error) {
     console.error("[lead:newsletter]", error);
     return NextResponse.json(

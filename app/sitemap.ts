@@ -12,7 +12,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/universities",
     "/courses",
     "/services",
-    "/fees",
     "/visa-assistance",
     "/success-stories",
     "/blog",

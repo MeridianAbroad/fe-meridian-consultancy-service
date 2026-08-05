@@ -39,14 +39,6 @@ export const newsletterSchema = z.object({
 });
 export type NewsletterInput = z.infer<typeof newsletterSchema>;
 
-export const feeInquirySchema = z.object({
-  fullName: name,
-  email,
-  phone,
-  destinationCountry: z.string().trim().min(1, "Please select a destination"),
-});
-export type FeeInquiryInput = z.infer<typeof feeInquirySchema>;
-
 export const visaConsultationSchema = z.object({
   fullName: name,
   email,
@@ -63,7 +55,6 @@ export const applicationSchema = z.object({
   phone,
   destinationCountry: z.string().trim().min(1, "Please select a destination"),
   university: z.string().trim().max(120).optional().or(z.literal("")),
-  course: z.string().trim().max(120).optional().or(z.literal("")),
   intake: z.string().trim().min(1, "Please select an intake"),
   message: z.string().trim().max(1000).optional().or(z.literal("")),
 });

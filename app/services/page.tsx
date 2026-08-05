@@ -28,8 +28,6 @@ export default function ServicesPage() {
       <CtaSection
         title="Ready to Get Started?"
         description="Book a free consultation and we'll walk you through exactly which services apply to your journey."
-        secondaryHref="/fees"
-        secondaryLabel="Check Fees & Loans"
       />
     </>
   );

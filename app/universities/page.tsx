@@ -31,8 +31,6 @@ export default function UniversitiesPage() {
       <CtaSection
         title="Want a Shortlist Built Around You?"
         description="Skip the spreadsheets — book a free consultation and get a personalised university shortlist in 48 hours."
-        secondaryHref="/fees"
-        secondaryLabel="Check Fees & Loans"
       />
     </>
   );

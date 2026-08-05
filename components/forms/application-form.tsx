@@ -1,10 +1,11 @@
 "use client";
 
-import { Controller } from "react-hook-form";
+import { Controller, useWatch } from "react-hook-form";
 import { Loader2 } from "lucide-react";
 import { useLeadForm } from "@/hooks/useLeadForm";
 import { applicationSchema } from "@/lib/validations";
 import { countries } from "@/lib/data/countries";
+import { universities } from "@/lib/data/universities";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -35,7 +36,6 @@ export function ApplicationForm({
       phone: "",
       destinationCountry: defaultCountry,
       university: defaultUniversity,
-      course: "",
       intake: "",
       message: "",
     },
@@ -45,8 +45,15 @@ export function ApplicationForm({
   const {
     register,
     control,
+    setValue,
     formState: { errors },
   } = form;
+
+  const selectedCountry = useWatch({ control, name: "destinationCountry" });
+  const selectedCountrySlug = countries.find((c) => c.name === selectedCountry)?.slug;
+  const availableUniversities = selectedCountrySlug
+    ? universities.filter((u) => u.countrySlug === selectedCountrySlug)
+    : [];
 
   return (
     <form onSubmit={onSubmit} className="space-y-4">
@@ -67,7 +74,13 @@ export function ApplicationForm({
             control={control}
             name="destinationCountry"
             render={({ field }) => (
-              <Select value={field.value} onValueChange={field.onChange}>
+              <Select
+                value={field.value}
+                onValueChange={(value) => {
+                  field.onChange(value);
+                  setValue("university", "");
+                }}
+              >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select a country" />
                 </SelectTrigger>
@@ -103,14 +116,28 @@ export function ApplicationForm({
           />
         </FormField>
       </div>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <FormField label="University (optional)" htmlFor="apply-university" error={errors.university?.message}>
-          <Input id="apply-university" placeholder="E.g. Bashkir State Medical University" {...register("university")} />
-        </FormField>
-        <FormField label="Course (optional)" htmlFor="apply-course" error={errors.course?.message}>
-          <Input id="apply-course" placeholder="E.g. MBBS — General Medicine" {...register("course")} />
-        </FormField>
-      </div>
+      <FormField label="University (optional)" error={errors.university?.message}>
+        <Controller
+          control={control}
+          name="university"
+          render={({ field }) => (
+            <Select value={field.value} onValueChange={field.onChange} disabled={!selectedCountry}>
+              <SelectTrigger className="w-full">
+                <SelectValue
+                  placeholder={selectedCountry ? "Select a university" : "Select a country first"}
+                />
+              </SelectTrigger>
+              <SelectContent>
+                {availableUniversities.map((u) => (
+                  <SelectItem key={u.slug} value={u.name}>
+                    {u.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        />
+      </FormField>
       <FormField
         label="Anything else we should know? (optional)"
         htmlFor="apply-message"

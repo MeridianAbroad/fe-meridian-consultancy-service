@@ -131,7 +131,7 @@ export default async function UniversityDetailPage({
           <SectionHeading
             align="left"
             eyebrow="Programme Details"
-            title="MBBS Duration & Tuition"
+            title="MBBS Duration"
             className="mx-0"
           />
           <div className="mt-10 overflow-x-auto rounded-3xl bg-card shadow-softer ring-1 ring-black/5">
@@ -141,7 +141,6 @@ export default async function UniversityDetailPage({
                   <th className="px-6 py-4 font-medium">Course</th>
                   <th className="px-6 py-4 font-medium">Level</th>
                   <th className="px-6 py-4 font-medium">Duration</th>
-                  <th className="px-6 py-4 font-medium">Tuition</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
@@ -155,7 +154,6 @@ export default async function UniversityDetailPage({
                       <Badge variant="secondary">{course.level}</Badge>
                     </td>
                     <td className="px-6 py-4 text-ink-700">{course.duration}</td>
-                    <td className="px-6 py-4 font-semibold text-navy-950">{course.tuition}</td>
                   </tr>
                 ))}
               </tbody>
@@ -167,8 +165,6 @@ export default async function UniversityDetailPage({
       <CtaSection
         title={`Ready to Apply to ${university.name}?`}
         description="Our counsellors will review your profile, perfect your application and guide you all the way to your visa."
-        secondaryHref="/fees"
-        secondaryLabel="Check Fees & Loans"
       />
     </>
   );

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { applicationSchema } from "@/lib/validations";
-import { notifyLead, saveLead } from "@/lib/leads";
+import { notifyLead, saveApplicationLead } from "@/lib/leads";
 
 export async function POST(request: Request) {
   const body = await request.json();
@@ -14,7 +14,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    await saveLead("application", parsed.data);
+    await saveApplicationLead(parsed.data);
   } catch (error) {
     console.error("[lead:application]", error);
     return NextResponse.json(

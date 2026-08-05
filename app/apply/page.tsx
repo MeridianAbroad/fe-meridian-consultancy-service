@@ -25,8 +25,12 @@ export default async function ApplyPage({
   searchParams: Promise<{ country?: string; university?: string }>;
 }) {
   const params = await searchParams;
-  const country = params.country ? getCountryBySlug(params.country) : undefined;
   const university = params.university ? getUniversityBySlug(params.university) : undefined;
+  const country = params.country
+    ? getCountryBySlug(params.country)
+    : university
+      ? getCountryBySlug(university.countrySlug)
+      : undefined;
 
   return (
     <>

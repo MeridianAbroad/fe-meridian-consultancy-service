@@ -1,51 +1,92 @@
 import { Resend } from "resend";
 import { CONTACT } from "@/lib/constants";
 import { getSupabaseClient } from "@/lib/supabase";
+import type {
+  ApplicationInput,
+  ConsultationInput,
+  ContactInput,
+  NewsletterInput,
+  VisaConsultationInput,
+} from "@/lib/validations";
 
-export type LeadType =
-  | "contact"
-  | "consultation"
-  | "newsletter"
-  | "fee_inquiry"
-  | "visa"
-  | "application";
+export type LeadType = "contact" | "consultation" | "newsletter" | "visa" | "application";
 
 const LEAD_TYPE_LABELS: Record<LeadType, string> = {
   contact: "Contact form",
   consultation: "Consultation booking",
   newsletter: "Newsletter signup",
-  fee_inquiry: "Fee inquiry",
   visa: "Visa consultation",
   application: "Application",
 };
 
-type LeadData = Record<string, unknown> & {
-  fullName?: string;
-  email: string;
-  phone?: string;
-};
-
-/** Persists a lead to Supabase. Throws if the insert fails. */
-export async function saveLead(type: LeadType, data: LeadData) {
-  const { error } = await getSupabaseClient().from("leads").insert({
-    type,
-    full_name: data.fullName ?? null,
-    email: data.email,
-    phone: data.phone ?? null,
-    payload: data,
-  });
-
+async function insertLead(table: string, row: Record<string, unknown>) {
+  const { error } = await getSupabaseClient().from(table).insert(row);
   if (error) {
-    throw new Error(`Failed to save ${type} lead: ${error.message}`);
+    throw new Error(`Failed to save lead to ${table}: ${error.message}`);
   }
 }
+
+export function saveContactLead(data: ContactInput) {
+  return insertLead("contact_leads", {
+    full_name: data.fullName,
+    email: data.email,
+    phone: data.phone,
+    subject: data.subject,
+    message: data.message,
+  });
+}
+
+export function saveConsultationLead(data: ConsultationInput) {
+  return insertLead("consultation_leads", {
+    full_name: data.fullName,
+    email: data.email,
+    phone: data.phone,
+    destination_country: data.destinationCountry,
+    study_level: data.studyLevel,
+    message: data.message || null,
+  });
+}
+
+export function saveNewsletterLead(data: NewsletterInput) {
+  return insertLead("newsletter_leads", {
+    email: data.email,
+  });
+}
+
+export function saveVisaLead(data: VisaConsultationInput) {
+  return insertLead("visa_leads", {
+    full_name: data.fullName,
+    email: data.email,
+    phone: data.phone,
+    destination_country: data.destinationCountry,
+    current_status: data.currentStatus,
+    message: data.message || null,
+  });
+}
+
+export function saveApplicationLead(data: ApplicationInput) {
+  return insertLead("application_leads", {
+    full_name: data.fullName,
+    email: data.email,
+    phone: data.phone,
+    destination_country: data.destinationCountry,
+    university: data.university || null,
+    intake: data.intake,
+    message: data.message || null,
+  });
+}
+
+type NotifiableLead = Record<string, unknown> & {
+  fullName?: string;
+  email: string;
+};
 
 /**
  * Emails the team about a new lead. Best-effort: failures are swallowed by
  * the caller (via .catch) so a notification hiccup never fails the request
  * after the lead is already saved.
  */
-export async function notifyLead(type: LeadType, data: LeadData) {
+export async function notifyLead(type: LeadType, data: NotifiableLead) {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) return;
 

@@ -60,9 +60,7 @@ export function UniversityCard({
           <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-teal-700">
             {university.ranking}
           </p>
-          <p className="mt-3 text-sm text-ink-700">{university.tuitionRange}</p>
-          <div className="mt-auto flex items-center justify-between border-t border-border pt-4 text-sm">
-            <span className="text-ink-500">Est. {university.founded}</span>
+          <div className="mt-auto flex items-center justify-end border-t border-border pt-4 text-sm">
             <span className="inline-flex items-center gap-1 font-semibold text-royal-600 transition-all group-hover:gap-2">
               View <ArrowUpRight className="size-4" />
             </span>

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { visaConsultationSchema } from "@/lib/validations";
-import { notifyLead, saveLead } from "@/lib/leads";
+import { notifyLead, saveVisaLead } from "@/lib/leads";
 
 export async function POST(request: Request) {
   const body = await request.json();
@@ -14,7 +14,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    await saveLead("visa", parsed.data);
+    await saveVisaLead(parsed.data);
   } catch (error) {
     console.error("[lead:visa]", error);
     return NextResponse.json(
