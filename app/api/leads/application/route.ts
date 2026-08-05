@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { applicationSchema } from "@/lib/validations";
-import { notifyLead, saveApplicationLead } from "@/lib/leads";
+import { notifyApplicationLead, saveApplicationLead } from "@/lib/leads";
 
 export async function POST(request: Request) {
   const body = await request.json();
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     );
   }
 
-  notifyLead("application", parsed.data).catch((error) =>
+  notifyApplicationLead(parsed.data).catch((error) =>
     console.error("[lead:application:email]", error)
   );
 

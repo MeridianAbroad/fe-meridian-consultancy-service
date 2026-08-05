@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { contactSchema } from "@/lib/validations";
-import { notifyLead, saveContactLead } from "@/lib/leads";
+import { notifyContactLead, saveContactLead } from "@/lib/leads";
 
 export async function POST(request: Request) {
   const body = await request.json();
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     );
   }
 
-  notifyLead("contact", parsed.data).catch((error) => console.error("[lead:contact:email]", error));
+  notifyContactLead(parsed.data).catch((error) => console.error("[lead:contact:email]", error));
 
   return NextResponse.json({ ok: true });
 }
