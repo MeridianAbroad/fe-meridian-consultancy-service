@@ -19,7 +19,7 @@ export default function SuccessStoriesPage() {
   return (
     <>
       <PageHeader
-        eyebrow="10+ Students Placed"
+        eyebrow="Success Stories"
         title="Real Journeys, Real Outcomes"
         description="Every admission, invitation letter and visa file behind these stories was built one student at a time — here's what that looked like."
         breadcrumbs={[{ label: "Success Stories" }]}

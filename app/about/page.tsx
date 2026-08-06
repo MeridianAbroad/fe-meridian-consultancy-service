@@ -8,7 +8,7 @@ import { CtaSection } from "@/components/shared/cta-section";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Meridian Abroad has placed 10+ NEET students across 21+ NMC & WHO approved universities in Russia and Georgia since 2026.",
+    "Meridian Abroad connects NEET-qualified students with 21+ NMC & WHO approved universities in Russia and Georgia.",
 };
 
 export default function AboutPage() {

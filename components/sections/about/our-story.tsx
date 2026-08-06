@@ -61,10 +61,10 @@ export function OurStory() {
               coordinators who stay reachable long after the visa is stamped.
             </p>
             <p>
-              Today, that same philosophy has guided over 10 students to 21+ partner
-              universities across Russia and Georgia — and parents tell us it&apos;s the
-              first time the process ever felt like it was actually about their child,
-              not a sales target.
+              Today, that same philosophy shapes every partnership we&apos;ve built —
+              direct relationships with 21+ NMC and WHO approved universities across
+              Russia and Georgia, so families get a process that&apos;s actually about
+              their child, not a sales target.
             </p>
           </div>
         </motion.div>

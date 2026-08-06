@@ -28,7 +28,6 @@ export const SOCIAL_LINKS = [
 ] as const;
 
 export const STATS = [
-  { label: "Students Placed", value: 10, suffix: "+" },
   { label: "Partner Universities", value: 21, suffix: "+" },
   { label: "Step Support Process", value: 12, suffix: "" },
 ] as const;
